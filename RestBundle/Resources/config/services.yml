@@ -1,0 +1,30 @@
+parameters:
+#    ez_rest.example.class: Ez\RestBundle\Example
+
+services:
+#    ez_rest.example:
+#        class: %ez_rest.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    myRestBundle.controller.default:
+        class: Ez\RestBundle\Rest\Controller\DefaultController
+        parent: ezpublish_rest.controller.base
+
+    myRestBundle.value_object_visitor.hello:
+        parent: ezpublish_rest.output.value_object_visitor.base
+        class: Ez\RestBundle\Rest\ValueObjectVisitor\Hello
+        tags:
+            - { name: ezpublish_rest.output.value_object_visitor, type: Ez\RestBundle\Rest\Values\Hello }
+
+    myRestBundle.input_parser.Greetings:
+        parent: ezpublish_rest.input.parser
+        class: Ez\RestBundle\Rest\InputParser\Greetings
+        tags:
+            - { name: ezpublish_rest.input.parser, mediaType: application/vnd.my.Greetings }
+
+
+    myRestBundle.value_object_visitor.restfields:
+        parent: ezpublish_rest.output.value_object_visitor.base
+        class: Ez\RestBundle\Rest\ValueObjectVisitor\RestFields
+        arguments: [ @ezpublish_rest.field_type_serializer  ]
+        tags:
+            - { name: ezpublish_rest.output.value_object_visitor, type: Ez\RestBundle\Rest\Values\RestFields }

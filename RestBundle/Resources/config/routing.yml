@@ -1,0 +1,11 @@
+myRestBundle_hello_world:
+    pattern: /my_rest_bundle/hello/{name}
+    defaults:
+        _controller: myRestBundle.controller.default:sayHello
+    methods: [POST]
+
+myRestBundle_content_fields:
+    pattern: /content/fields/{contentId}/{language}
+    defaults:
+        _controller: myRestBundle.controller.default:contentFields
+    methods: [GET]
